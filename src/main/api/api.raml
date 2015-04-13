@@ -1,0 +1,60 @@
+#%RAML 0.8
+
+title: SungardAS Private API
+baseUri: http://localhost:8081/api/v1
+version: 1.0
+documentation:
+  - title: Private API for CDR
+    content: |
+      API Manager for Central Data Repository CRUD operations
+                         
+/customers:
+    displayName: Customers
+    description: Retrieves a list of customers, with pagination           
+    get:
+      queryParameters:
+        page:
+          description: Pagination - page number
+          type: integer
+          required: false
+          example: 1
+          default: 1
+        perPage:
+          description: Specify the amount of items that will be retrieved per page
+          type: integer
+          required: false
+          minimum: 10
+          maximum: 100
+          default: 50
+          example: 50
+        email:
+          description: by email
+          type: string
+          required: false
+        companyName:
+          description: by companyName
+          type: string
+          required: false  
+      responses:
+        200:
+          description: |
+            Customers retrieved successfully
+          body:
+            application/json:
+              schema: !include schemas/_dumb-schema.json
+              example: !include examples/privateApi/customers-get-example.json                 
+                                    
+    /{customerId}:
+      displayName: getCustomerById
+      description: A specific customer (by Id)
+      get:
+        responses:
+          200:
+            description: |
+              Customer retrieved successfully
+            body:
+              application/json:
+                schema: !include schemas/_dumb-schema.json
+                example: !include examples/privateApi/customer-get-example.json
+           
+# define 30 more API methods              

@@ -1,0 +1,20 @@
+[
+	{
+    	"id": 123,
+    	"name": "a sample job1",
+    	"baseFile": "filePath\filename0.1",
+    	"advertisements": [] 
+	},
+	{
+    	"id": 124,
+    	"name": "a sample job2",
+    	"baseFile": "filePath\filename0.2",
+    	"advertisements": [] 
+	},
+	{
+    	"id": 125,
+    	"name": "a sample job3",
+    	"baseFile": "filePath\filename0.3",
+    	"advertisements": []
+	}	
+]

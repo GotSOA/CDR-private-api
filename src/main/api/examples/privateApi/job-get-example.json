@@ -1,0 +1,23 @@
+{
+    "id": 123,
+    "name": "a sample job",
+    "baseFile", "filePath\fileName0",
+    "hasNotifications": false,
+    "advertisements": [    		
+    	{
+			"id":123001, 
+			"channel":  "Vogue",
+			"file": "filePath\fileName1.1"
+		},
+		{
+			"id":123002, 
+			"channel":  "Glamour",
+			"file": "filePath\fileName2.1"
+		},    
+		{
+			"id":123003, 
+			"channel":  "10",
+			"file": "filePath\fileName3.1"
+		}      
+    ]
+}

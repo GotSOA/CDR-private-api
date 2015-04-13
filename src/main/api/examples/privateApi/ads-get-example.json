@@ -1,0 +1,26 @@
+[    		
+	{
+		"id":123001, 
+		"channel":  "Vogue",
+		"file": "filePath\fileName1.1",
+		"approvedByAgency": true,
+		"contactId": 12345,
+		"status": "approved"
+	},
+	{
+		"id":123002, 
+		"channel":  "Glamour",
+		"file": "filePath\fileName2.1",
+		"approvedByAgency": false,
+		"contactId": 12345,
+		"status": "pending"
+	},    
+	{
+		"id":123003, 
+		"channel":  "10",
+		"file": "filePath\fileName3.1",
+		"approvedByAgency": false,
+		"contactId": 12345,
+		"status": "new"
+	}
+]    	

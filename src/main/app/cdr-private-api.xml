@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:json="http://www.mulesoft.org/schema/mule/json"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:context="http://www.springframework.org/schema/context" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" version="EE-3.5.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd">
+    <context:property-placeholder location="api.properties"/>
+    <apikit:config name="apiConfig" raml="api.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
+    <apikit:mapping-exception-strategy name="apiKitGlobalExceptionMapping" doc:name="Mapping Exception Strategy">  
+        <apikit:mapping statusCode="404"> 
+            <apikit:exception value="org.mule.module.apikit.exception.NotFoundException"/>  
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"></set-property>  
+            <set-payload value="{ &quot;message&quot;: &quot;Resource not found&quot; }" doc:name="Set Payload"/> 
+        </apikit:mapping>  
+        <apikit:mapping statusCode="405"> 
+            <apikit:exception value="org.mule.module.apikit.exception.MethodNotAllowedException"/>  
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"></set-property>  
+            <set-payload value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" doc:name="Set Payload"></set-payload> 
+        </apikit:mapping>  
+        <apikit:mapping statusCode="415"> 
+            <apikit:exception value="org.mule.module.apikit.exception.UnsupportedMediaTypeException"/>  
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"></set-property>  
+            <set-payload value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" doc:name="Set Payload"></set-payload> 
+        </apikit:mapping>  
+        <apikit:mapping statusCode="406"> 
+            <apikit:exception value="org.mule.module.apikit.exception.NotAcceptableException"/>  
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"></set-property>  
+            <set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" doc:name="Set Payload"></set-payload> 
+        </apikit:mapping>  
+        <apikit:mapping statusCode="400"> 
+            <apikit:exception value="org.mule.module.apikit.exception.BadRequestException"/>  
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"></set-property>  
+            <set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }" doc:name="Set Payload"></set-payload> 
+        </apikit:mapping> 
+    </apikit:mapping-exception-strategy>
+    <flow name="main" doc:name="main">
+        <http:inbound-endpoint address="http://localhost:${http.port}/api" doc:name="HTTP"/>
+        <apikit:router config-ref="apiConfig" doc:name="APIkit Router"/>
+        <exception-strategy ref="apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
+    </flow>
+    <sub-flow name="getIdFromPath" doc:name="getIdFromPath">
+        <scripting:component doc:name="Groovy">
+            <scripting:script engine="Groovy">
+            <![CDATA[
+            	// this script works assuming nothing gets appended behind the expected rest path such another /xyz...
+            	msgArr = payload[1..-1].split('/')
+				return msgArr[msgArr.size()-1]
+			]]>
+			</scripting:script>
+        </scripting:component>
+        <logger level="INFO" message="In flow-ref getIdFromPath, returning payload: #[payload]"/>
+    </sub-flow>
+    
+    <!--  get Customers: ALL, by email, by companyName --> 
+    <flow name="get:/customers:apiConfig" doc:name="get:/customers:apiConfig">
+    	<logger message="get:/customers ..." level="INFO" doc:name="Logger"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <set-variable variableName="page" value="#[message.inboundProperties['http.query.params']['page']]" doc:name="set page number"/>
+        <set-variable variableName="perPage" value="#[message.inboundProperties['http.query.params']['perPage']]" doc:name="set perPage"/>
+        <set-variable variableName="email" value="#[message.inboundProperties['http.query.params']['email']]" doc:name="set email"/>
+        <set-variable variableName="companyName" value="#[message.inboundProperties['http.query.params']['companyName']]" doc:name="set companyName"/>
+        <!-- TODO: parse the queryString and figure out which param is loaded -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/customers-get-example.json')]" doc:name="Set Payload"/>
+        <vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+        <!-- <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" /> -->
+    </flow>
+    <!-- get Customer by Id -->
+    <flow name="get:/customers/{customerId}:apiConfig" doc:name="get:/customers/{customerId}:apiConfig">
+        <logger message="get:/customers/{customerId} ..." level="INFO" doc:name="Logger"/>
+        <!-- <logger message="inspecting payload #[payload]" level="INFO" doc:name="Logger"/> -->
+        <!-- <logger message="inspecting message: #[message]" level="INFO" doc:name="Logger"/> -->
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <flow-ref name="getIdFromPath" doc:name="Flow Reference"/>       
+        <set-variable variableName="customerId" value="#[payload]" doc:name="set Variable customerId"/>
+        <logger message="inspecting customerID variable: #[flowVars['customerId']]" level="INFO" doc:name="Logger"/>
+        <!-- apply some logic to return some dynamic mock payload if needed -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/customer-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+		<!-- <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" /> -->
+    </flow>
+
+	<!-- TODO: develop 30 more flows -->
+
+    <!-- bogus request processing flow (ECHO) -->
+    <flow name="request-processing-flow" doc:name="request-processing-flow">
+        <vm:inbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+        <object-to-string-transformer doc:name="Object to String"/>
+        <!-- <echo-component doc:name="Echo"/> -->
+        <logger level="INFO" message="return payload: #[payload]" doc:name="Logger"/>
+    </flow> 
+       
+</mule>

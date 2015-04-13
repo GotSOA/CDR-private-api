@@ -1,0 +1,64 @@
+[
+    {
+        "sgid": "11111",
+        "parentId": "00000",
+        "companyName": "a sample company 1",
+        "companyDomain": "domain1",
+        "address": "some address 1",
+        "customerContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"},
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "sgasContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"},
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "billingAccount": [
+        	        			{"id": "b11111", "name": "accountName-X1", "other-specifics": "TBD"},
+        						{"id": "b11112", "name": "accountName-X2", "other-specifics": "TBD"}
+        ],
+        "order": [],
+        "customerType": "type1"
+    },
+    {
+        "sgid": "22222",
+        "parentId": "00000",
+        "companyName": "a sample company 2",
+        "companyDomain": "domain2",
+        "address": "some address 2",
+        "customerContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"},
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "sgasContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "billingAccount": [
+        	        			{"id": "b22222-1", "name": "accountName-Y", "other-specifics": "TBD"}
+        ],
+        "order": [],
+        "customerType": "type1"
+    },
+    {
+        "sgid": "33333",
+        "parentId": "00000",
+        "companyName": "a sample company 3",
+        "companyDomain": "domain3",
+        "address": "some address 3",
+        "customerContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"},
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "sgasContact": [
+        						{"name": "name1", "email": "email1", "phone": "phone1"},
+        						{"name": "name1", "email": "email1", "phone": "phone1"}
+        ],
+        "billingAccount": [
+        	        			{"id": "b33333-1", "name": "accountName-Z1", "other-specifics": "TBD"},
+        						{"id": "b33333-2", "name": "accountName-Z2", "other-specifics": "TBD"},
+        						{"id": "b33333-3", "name": "accountName-Z3", "other-specifics": "TBD"}
+        ],
+        "order": [],
+        "customerType": "type1"
+    }
+]

@@ -1,0 +1,21 @@
+{
+	        "sgid": "11111",
+	        "parentId": "00000",
+	        "companyName": "a sample company 1",
+	        "companyDomain": "domain1",
+	        "address": "some address 1",
+	        "customerContact": [
+	        						{"name": "name1", "email": "email1", "phone": "phone1"},
+	        						{"name": "name1", "email": "email1", "phone": "phone1"}
+	        ],
+	        "sgasContact": [
+	        						{"name": "name1", "email": "email1", "phone": "phone1"},
+	        						{"name": "name1", "email": "email1", "phone": "phone1"}
+	        ],
+	        "billingAccount": [
+	        	        			{"id": "b11111", "name": "accountName-X1", "other-specifics": "TBD"},
+	        						{"id": "b11112", "name": "accountName-X2", "other-specifics": "TBD"}
+	        ],
+	        "order": [],
+	        "customerType": "type1"
+	    }
