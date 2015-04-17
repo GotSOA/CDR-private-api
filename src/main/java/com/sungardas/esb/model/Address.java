@@ -3,6 +3,7 @@ package com.sungardas.esb.model;
 import java.util.List;
 
 public class Address {
+	private String sgid;
 	private String address1;
 	private String address2;
 	private String city;
@@ -14,7 +15,7 @@ public class Address {
 	private Phone phone2;
 	private Phone fax;
 	private String email;
-	
+	private String addressTypeDescription; 
 	
 	class Phone {
 		private String type;

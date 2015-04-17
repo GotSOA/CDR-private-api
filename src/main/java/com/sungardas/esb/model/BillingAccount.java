@@ -3,17 +3,21 @@ package com.sungardas.esb.model;
 import java.util.List;
 
 public class BillingAccount {
-	private long accountId;
+	private String sgid;
+	//private long accountId;
 	private String currency;
 	private CustomerContact billingContact;
 	private Address billingAddress;
 	private List<Usage> usage;
+	
+	/*
 	public long getAccountId() {
 		return accountId;
 	}
 	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 	}
+	*/
 	public String getCurrency() {
 		return currency;
 	}

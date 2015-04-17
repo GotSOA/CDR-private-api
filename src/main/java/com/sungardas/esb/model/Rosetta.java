@@ -8,6 +8,7 @@ public class Rosetta {
 	private String key;
 	private String value;
 	private String sgid;
+	private String objectType;   // ENUM: what are the available types?
 	
 	public Map<String, String> translateFromSungardId(String sgid) {
 		

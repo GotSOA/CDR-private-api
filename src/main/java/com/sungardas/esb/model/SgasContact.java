@@ -1,6 +1,7 @@
 package com.sungardas.esb.model;
 
 public class SgasContact {
+	private String sgid;
 	private String firstName;
 	private String lastName;
 	private String middleInitial;

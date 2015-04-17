@@ -1,8 +1,11 @@
 {
-	"id":12345, 
-	"channel": "Vogue",
+	"id":12345,
+	"salutation": "Mr.",
+	"firstName": "Joao",
+	"lastName": "Ribeiro",
+	"middleInitial": "P",
 	"e-mail": "jpribeiro@vogue.br", 
-	"phone": "011-1234-5678", 
-	"address": "Rua Tut—ia, 1157 04007-900 - S‹o Paulo",
-	"personsName": "Jo‹o Pedro Ribeiro"
+	"title": "big cheese", 
+	"address": "Rua Tutoia, 1157 04007-900 - Sao Paulo",
+	"contactType": "customer"
 }

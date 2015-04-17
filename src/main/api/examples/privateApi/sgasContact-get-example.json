@@ -1,0 +1,11 @@
+{
+	private String firstName;
+	private String lastName;
+	private String middleInitial;
+	private String title;
+	private String salutation;
+	private String department;
+	private String teamName;
+	private String email;
+	private Address address;
+}

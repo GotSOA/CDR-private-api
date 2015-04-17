@@ -1,6 +1,7 @@
 package com.sungardas.esb.model;
 
 public class CustomerContact {
+	private String sgid;
 	private String salutation;	
 	private String firstName;
 	private String lastName;
@@ -8,7 +9,10 @@ public class CustomerContact {
 	private String title;
 	private String email;
 	private Address address;
-	private String contactType;
+	private String contactType;			// Sungard (employee) or Customer contact
+	
+	// Role: if type=Sungard, role: SME, AccountExec, DRC...
+	// if type=customer, role: main, billing, techIssue or DRC contact
 	
 	
 	public String getSalutation() {

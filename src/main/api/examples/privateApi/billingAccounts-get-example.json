@@ -1,0 +1,20 @@
+[
+	{
+    	"id": 123,
+    	"name": "sample billing account1",
+    	"accountClass": "class1",
+    	"yearlyRevenue": 1000000 
+	},
+	{
+    	"id": 124,
+    	"name": "sample billing account2",
+    	"accountClass": "class2",
+    	"yearlyRevenue": 2000000 
+	},
+	{
+    	"id": 125,
+    	"name": "sample billing account3",
+    	"accountClass": "class3",
+    	"yearlyRevenue": 3000000 
+	},
+]

@@ -61,8 +61,6 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
     <flow name="get:/customers:apiConfig" doc:name="get:/customers:apiConfig">
     	<logger message="get:/customers ..." level="INFO" doc:name="Logger"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <set-variable variableName="page" value="#[message.inboundProperties['http.query.params']['page']]" doc:name="set page number"/>
-        <set-variable variableName="perPage" value="#[message.inboundProperties['http.query.params']['perPage']]" doc:name="set perPage"/>
         <set-variable variableName="email" value="#[message.inboundProperties['http.query.params']['email']]" doc:name="set email"/>
         <set-variable variableName="companyName" value="#[message.inboundProperties['http.query.params']['companyName']]" doc:name="set companyName"/>
         <!-- TODO: parse the queryString and figure out which param is loaded -->
@@ -73,8 +71,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
     <!-- get Customer by Id -->
     <flow name="get:/customers/{customerId}:apiConfig" doc:name="get:/customers/{customerId}:apiConfig">
         <logger message="get:/customers/{customerId} ..." level="INFO" doc:name="Logger"/>
-        <!-- <logger message="inspecting payload #[payload]" level="INFO" doc:name="Logger"/> -->
-        <!-- <logger message="inspecting message: #[message]" level="INFO" doc:name="Logger"/> -->
+        <!-- TODO set variables... -->
         <json:object-to-json-transformer doc:name="Object to JSON"/>
         <flow-ref name="getIdFromPath" doc:name="Flow Reference"/>       
         <set-variable variableName="customerId" value="#[payload]" doc:name="set Variable customerId"/>
@@ -82,10 +79,75 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <!-- apply some logic to return some dynamic mock payload if needed -->
         <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/customer-get-example.json')]" doc:name="Set Mock Payload"/>
 		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
-		<!-- <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" /> -->
     </flow>
+    <!-- get Contacts for a given Customer -->
+    <flow name="get:/customers/{customerId}/contacts:apiConfig" doc:name="get:/customers/{customerId}/contacts:apiConfig">
+        <logger message="get:/customers/{customerId}/contacts ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/contacts-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>
+    <!-- get Contact by Id -->
+    <flow name="get:/customers/{customerId}/contacts/{contactId}:apiConfig" doc:name="get:/customers/{customerId}/contacts/{contactId}:apiConfig">
+        <logger message="get:/customers/{customerId}/contacts/{contactId} ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/contact-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>    
+    <!-- get billingAccounts for a given Customer -->
+    <flow name="get:/customers/{customerId}/billingAccounts:apiConfig" doc:name="get:/customers/{customerId}/billingAccounts:apiConfig">
+        <logger message="get:/customers/{customerId}/billingAccounts ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/billingAccounts-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>
+    <!-- get BillingAccount by Id -->
+    <flow name="get:/customers/{customerId}/billingAccounts/{billingAccountId}:apiConfig" doc:name="get:/customers/{customerId}/billingAccounts/{billingAccountId}:apiConfig">
+        <logger message="get:/customers/{customerId}/billingAccounts/{billingAccountId} ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/billingAccount-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>
+    <!-- get Products for a given billingAccount -->
+    <flow name="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products:apiConfig" doc:name="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products:apiConfig">
+        <logger message="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/products-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>
+    <!-- get Product by Id -->
+    <flow name="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products/{productId}:apiConfig" doc:name="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products/{productId}:apiConfig">
+        <logger message="get:/customers/{customerId}/billingAccounts/{billingAccountId}/products/{productId} ..." level="INFO" doc:name="Logger"/>
+        <!-- logic not implemented... -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/product-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>    
 
-	<!-- TODO: develop 30 more flows -->
+    <!--  get Products: ALL --> 
+    <flow name="get:/products:apiConfig" doc:name="get:/products:apiConfig">
+    	<logger message="get:/customerproducts ..." level="INFO" doc:name="Logger"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <set-variable variableName="email" value="#[message.inboundProperties['http.query.params']['email']]" doc:name="set email"/>
+        <set-variable variableName="companyName" value="#[message.inboundProperties['http.query.params']['companyName']]" doc:name="set companyName"/>
+        <!-- TODO: parse the queryString and figure out which param is loaded -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/customers-get-example.json')]" doc:name="Set Payload"/>
+        <vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+        <!-- <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" /> -->
+    </flow>
+    <!-- get Product by Id -->
+    <flow name="get:/products/{productId}:apiConfig" doc:name="get:/products/{productId}:apiConfig">
+        <logger message="get:/products/{productId} ..." level="INFO" doc:name="Logger"/>
+        <!-- todo set variable... -->
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <flow-ref name="getIdFromPath" doc:name="Flow Reference"/>       
+        <set-variable variableName="customerId" value="#[payload]" doc:name="set Variable customerId"/>
+        <logger message="inspecting customerID variable: #[flowVars['customerId']]" level="INFO" doc:name="Logger"/>
+        <!-- apply some logic to return some dynamic mock payload if needed -->
+        <set-payload value="#[Thread.currentThread().getContextClassLoader().getResourceAsStream('examples/privateApi/customer-get-example.json')]" doc:name="Set Mock Payload"/>
+		<vm:outbound-endpoint exchange-pattern="request-response" doc:name="VM-processRequest" path="Q.processRequest" />
+    </flow>
+        
+	<!-- TODO: more flows to develop -->
 
     <!-- bogus request processing flow (ECHO) -->
     <flow name="request-processing-flow" doc:name="request-processing-flow">

@@ -10,23 +10,9 @@ documentation:
                          
 /customers:
     displayName: Customers
-    description: Retrieves a list of customers, with pagination           
+    description: Retrieves a list of customers         
     get:
       queryParameters:
-        page:
-          description: Pagination - page number
-          type: integer
-          required: false
-          example: 1
-          default: 1
-        perPage:
-          description: Specify the amount of items that will be retrieved per page
-          type: integer
-          required: false
-          minimum: 10
-          maximum: 100
-          default: 50
-          example: 50
         email:
           description: by email
           type: string
@@ -56,5 +42,149 @@ documentation:
               application/json:
                 schema: !include schemas/_dumb-schema.json
                 example: !include examples/privateApi/customer-get-example.json
-           
-# define 30 more API methods              
+      /contacts:
+        displayName: Contacts
+        description: Retrieves a list of contacts, with pagination           
+        get: 
+          responses:
+            200:
+              description: |
+                Contacts retrieved successfully
+              body:
+                application/json:
+                  schema: !include schemas/_dumb-schema.json
+                  example: !include examples/privateApi/contacts-get-example.json
+        /{contactId}:
+          displayName: getContactById
+          description: A specific contact (by Id) for a given customer
+          get:
+            responses:
+              200:
+                description: |
+                  Contact retrieved successfully
+                body:
+                  application/json:
+                    schema: !include schemas/_dumb-schema.json
+                    example: !include examples/privateApi/contact-get-example.json
+      /billingAccounts:
+        displayName: Billing Accounts
+        description: Retrieves a list of billing accounts for a given customer           
+        get: 
+          responses:
+            200:
+              description: |
+                Billing Accounts retrieved successfully
+              body:
+                application/json:
+                  schema: !include schemas/_dumb-schema.json
+                  example: !include examples/privateApi/billingAccounts-get-example.json
+        /{billingAccountId}:
+          displayName: getBillingAccountById
+          description: A specific billing account (by Id) for a given customer
+          get:
+            responses:
+              200:
+                description: |
+                  Billing Account retrieved successfully
+                body:
+                  application/json:
+                    schema: !include schemas/_dumb-schema.json
+                    example: !include examples/privateApi/billingAccount-get-example.json             
+          /products:
+            displayName: Products
+            description: Retrieves a list of products for a given billing account           
+            get: 
+              responses:
+                200:
+                  description: |
+                    Products retrieved successfully
+                  body:
+                    application/json:
+                      schema: !include schemas/_dumb-schema.json
+                      example: !include examples/privateApi/products-get-example.json             
+            /{productId}:
+              displayName: getProductById
+              description: A specific product (by Id) for a given billing account
+              get:
+                responses:
+                  200:
+                    description: |
+                      Product retrieved successfully
+                    body:
+                      application/json:
+                        schema: !include schemas/_dumb-schema.json
+                        example: !include examples/privateApi/product-get-example.json              
+
+/products:
+    displayName: Products
+    description: Retrieves a list of products         
+    get:
+      responses:
+        200:
+          description: |
+            Products retrieved successfully
+          body:
+            application/json:
+              schema: !include schemas/_dumb-schema.json
+              example: !include examples/privateApi/products-get-example.json                 
+                                    
+    /{productId}:
+      displayName: getProductById
+      description: A specific product (by Id)
+      get:
+        responses:
+          200:
+            description: |
+              Product retrieved successfully
+            body:
+              application/json:
+                schema: !include schemas/_dumb-schema.json
+                example: !include examples/privateApi/product-get-example.json
+      /categories:
+        displayName: Categories
+        description: Retrieves a list of categories for a given product         
+        get: 
+          responses:
+            200:
+              description: |
+                Categories retrieved successfully
+              body:
+                application/json:
+                  schema: !include schemas/_dumb-schema.json
+                  example: !include examples/privateApi/categories-get-example.json
+        /{categoryId}:
+          displayName: getCategoryById
+          description: A specific category (by Id) for a given product
+          get:
+            responses:
+              200:
+                description: |
+                  Contact retrieved successfully
+                body:
+                  application/json:
+                    schema: !include schemas/_dumb-schema.json
+                    example: !include examples/privateApi/category-get-example.json          
+      /types:
+        displayName: Types
+        description: Retrieves a list of types for a given product         
+        get: 
+          responses:
+            200:
+              description: |
+                Types retrieved successfully
+              body:
+                application/json:
+                  schema: !include schemas/_dumb-schema.json
+                  example: !include examples/privateApi/types-get-example.json
+        /{typeId}:
+          displayName: getTypeById
+          description: A specific type (by Id) for a given product
+          get:
+            responses:
+              200:
+                description: |
+                  Type retrieved successfully
+                body:
+                  application/json:
+                    schema: !include schemas/_dumb-schema.json
+                    example: !include examples/privateApi/type-get-example.json      

@@ -16,4 +16,6 @@ public class CanonicalWrapper  {
 	private List<BillingAccount> billingAccounts;
 	private List<SgasContact> sgasContacts;
 	private List<Usage> usages;
+	private List<UsageDetail> usageDetails;
+	private List<RateSheet> rateSheets;
 }
