@@ -1,21 +1,18 @@
 package com.sungardas.esb.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Usage {
-	private String sgid;
-	private long locationId;		// ask Val
+	
+	private long id;		// PK
+	private long locationId;		// similar to workplaceId (in Aria)
 	private long billingAccountId;
 	private String usageTypeDescription;
-	// private List<Long> usageDetailsId;		// don't need bi-directional reference, discuss with Val
-	private String usagePeriod;		// ask Val: data type for period?
-	private int usageCollectionFrequency;		// ask Val what unit of time?
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
+	private Date startDate;		
+	private Date endDate;		
+	private CollectionFrequencyEnum usageCollectionFrequency;		// ENUM
+	
 	public long getLocationId() {
 		return locationId;
 	}
@@ -34,16 +31,29 @@ public class Usage {
 	public void setUsageTypeDescription(String usageTypeDescription) {
 		this.usageTypeDescription = usageTypeDescription;
 	}
-	public String getUsagePeriod() {
-		return usagePeriod;
+	public long getId() {
+		return id;
 	}
-	public void setUsagePeriod(String usagePeriod) {
-		this.usagePeriod = usagePeriod;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public int getUsageCollectionFrequency() {
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public CollectionFrequencyEnum getUsageCollectionFrequency() {
 		return usageCollectionFrequency;
 	}
-	public void setUsageCollectionFrequency(int usageCollectionFrequency) {
+	public void setUsageCollectionFrequency(
+			CollectionFrequencyEnum usageCollectionFrequency) {
 		this.usageCollectionFrequency = usageCollectionFrequency;
 	}
 

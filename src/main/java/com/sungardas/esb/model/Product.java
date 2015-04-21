@@ -3,8 +3,9 @@ package com.sungardas.esb.model;
 import java.util.Date;
 
 public class Product {
+	// notion of product is generic
 	
-	private String sgid;
+	private String id;		// PK   SgasId
 	private String name;
 	private String description;
 	private String categoryDescription;
@@ -13,11 +14,12 @@ public class Product {
 	private String statusDescription;
 	private Date startDate;
 	private Date endDate;
-	private String componentDescription;
+	private String componentDescription;			// the stuff being sold
 	private String locationDescription;
-	private RateSheet rateSheet;
+	private RateSheet rateSheet;				// handles pricing at the component level or product level ???
+	// private long rateSheetId;		// ?
 	private String deliveryMethodDescription;
-	private String countryISOCode;		// 2 letter code
+	private String countryISOCode;					// 2 letter code
 	private String generalLedgerCode;
 	private long ariaPlanId;
 	private long ariaServiceId;
@@ -25,14 +27,11 @@ public class Product {
 	private boolean discountinued;
 	private String taxCategoryCode;
 	private String soldFrom;
-	private long lobId;			// ?
-	private String sfdcProductCodeId;    // guid or long? see in SFDC product sObject
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
+	// ENUM instead
+	private long lobId;			// LOB: Line Of Business = RecoveryServices, ManagedServices, CloudServices  (ENUM)
+	//private String sfdcProductCodeId;    // guid or long? see in SFDC product sObject
+
+
 	public String getName() {
 		return name;
 	}
@@ -159,11 +158,11 @@ public class Product {
 	public void setLobId(long lobId) {
 		this.lobId = lobId;
 	}
-	public String getSfdcProductCodeId() {
-		return sfdcProductCodeId;
+	public String getId() {
+		return id;
 	}
-	public void setSfdcProductCodeId(String sfdcProductCodeId) {
-		this.sfdcProductCodeId = sfdcProductCodeId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	

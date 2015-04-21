@@ -3,7 +3,8 @@ package com.sungardas.esb.model;
 import java.util.List;
 
 public class Address {
-	private String sgid;
+	
+	private String id;			// PK
 	private String address1;
 	private String address2;
 	private String city;
@@ -151,6 +152,26 @@ public class Address {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getAddressTypeDescription() {
+		return addressTypeDescription;
+	}
+
+
+	public void setAddressTypeDescription(String addressTypeDescription) {
+		this.addressTypeDescription = addressTypeDescription;
 	}
 	
 	

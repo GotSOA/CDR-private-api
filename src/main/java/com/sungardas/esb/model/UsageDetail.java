@@ -1,16 +1,13 @@
 package com.sungardas.esb.model;
 
 public class UsageDetail {
-	private String sgid;
+	
+	private String id;		// PK
 	private long usageId;		
 	private String name;
 	private long value;		// ask Val: data type long, int, Money?...
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
+	// see new model
+
 	public long getUsageId() {
 		return usageId;
 	}
@@ -28,5 +25,11 @@ public class UsageDetail {
 	}
 	public void setValue(long value) {
 		this.value = value;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

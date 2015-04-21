@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Contract {
 
-	private String sgid;
+	private String id;		// PK
 	private String name;
-	private long customerBillingAccountId;
+	private long billingAccountId;
 	private long masterAgreementId;   // also known as globalAgreementId
 	private String contractTypeDescription;
 	private String contractRelationshipDescription;
@@ -15,29 +15,23 @@ public class Contract {
 	private Date endDate;
 	private String billingTypeDescription;
 	private String billingCycleDescription;
-	private String paymentMethodName;
+	private long paymentMethodId;				// see the newer model (paymentMethod object)
 	private long contractLevelDiscount;
 	private String contractLanguageComponentName;
 	private String currencyISOCode;		// 3 letter code
 	private long monthlyCurrencyVolume;
 	
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getCustomerBillingAccountId() {
-		return customerBillingAccountId;
+	public long getBillingAccountId() {
+		return billingAccountId;
 	}
-	public void setCustomerBillingAccountId(long customerBillingAccountId) {
-		this.customerBillingAccountId = customerBillingAccountId;
+	public void setBillingAccountId(long billingAccountId) {
+		this.billingAccountId = billingAccountId;
 	}
 	public long getMasterAgreementId() {
 		return masterAgreementId;
@@ -88,11 +82,11 @@ public class Contract {
 	public void setBillingCycleDescription(String billingCycleDescription) {
 		this.billingCycleDescription = billingCycleDescription;
 	}
-	public String getPaymentMethodName() {
-		return paymentMethodName;
+	public long getPaymentMethodId() {
+		return paymentMethodId;
 	}
-	public void setPaymentMethodName(String paymentMethodName) {
-		this.paymentMethodName = paymentMethodName;
+	public void setPaymentMethodName(long paymentMethodId) {
+		this.paymentMethodId = paymentMethodId;
 	}
 	public long getContractLevelDiscount() {
 		return contractLevelDiscount;
@@ -118,5 +112,14 @@ public class Contract {
 	}
 	public void setMonthlyCurrencyVolume(long monthlyCurrencyVolume) {
 		this.monthlyCurrencyVolume = monthlyCurrencyVolume;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setPaymentMethodId(long paymentMethodId) {
+		this.paymentMethodId = paymentMethodId;
 	}
 }

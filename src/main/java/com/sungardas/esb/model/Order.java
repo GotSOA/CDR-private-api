@@ -4,25 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-	private String sgid;
+	private String id;			// PK
 	private long contractId;
 	private String orderTypeDescription;
-	private String companyName;		// isn't this redundant since we have the contractId already?
+	//private String companyName;		// isn't this redundant since we have the contractId already?
 	//private String companyId;
 	private String orderStatusDescription;
-	private Date startDate;
-	private Date endDate;
+	private Date orderDate;
+	private Date fulfillmentDate;
 	private String orderDescription;
-	private long orderLevelDiscount;
+	private long orderLevelDiscount;	// naming convention?
 	private String currencyISOCode;
-	private List<String> signatures;
+	private String signature;
 	
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
 	public long getContractId() {
 		return contractId;
 	}
@@ -35,30 +29,14 @@ public class Order {
 	public void setOrderTypeDescription(String orderTypeDescription) {
 		this.orderTypeDescription = orderTypeDescription;
 	}
-	public String getCompanyName() {
-		return companyName;
-	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
+
 	public String getOrderStatusDescription() {
 		return orderStatusDescription;
 	}
 	public void setOrderStatusDescription(String orderStatusDescription) {
 		this.orderStatusDescription = orderStatusDescription;
 	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+
 	public String getOrderDescription() {
 		return orderDescription;
 	}
@@ -77,11 +55,29 @@ public class Order {
 	public void setCurrencyISOCode(String currencyISOCode) {
 		this.currencyISOCode = currencyISOCode;
 	}
-	public List<String> getSignatures() {
-		return signatures;
+	public String getSignature() {
+		return signature;
 	}
-	public void setSignatures(List<String> signatures) {
-		this.signatures = signatures;
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+	public Date getFulfillmentDate() {
+		return fulfillmentDate;
+	}
+	public void setFulfillmentDate(Date fulfillmentDate) {
+		this.fulfillmentDate = fulfillmentDate;
 	}
 
 }

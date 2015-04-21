@@ -3,24 +3,16 @@ package com.sungardas.esb.model;
 import java.util.List;
 
 public class Customer {
-	private String sgid;
+	private String id;		// PK, sgid
 	private String parentId;
 	private String companyName;
 	private String companyDomain;
 	private Address address;
-	private List<CustomerContact> customerContact;
-	private List<SgasContact> sgasContact;
+	private List<Contact> contact;
 	private List<BillingAccount> billingAccount;
 	private List<Order> order;
 	private String customerType;
 
-	public String getSgid() {
-		return sgid;
-	}
-
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
 
 	public String getParentId() {
 		return parentId;
@@ -54,22 +46,6 @@ public class Customer {
 		this.address = address;
 	}
 
-	public List<CustomerContact> getCustomerContact() {
-		return customerContact;
-	}
-
-	public void setCustomerContact(List<CustomerContact> customerContact) {
-		this.customerContact = customerContact;
-	}
-
-	public List<SgasContact> getSgasContact() {
-		return sgasContact;
-	}
-
-	public void setSgasContact(List<SgasContact> sgasContact) {
-		this.sgasContact = sgasContact;
-	}
-
 	public List<BillingAccount> getBillingAccount() {
 		return billingAccount;
 	}
@@ -92,6 +68,22 @@ public class Customer {
 
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public List<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(List<Contact> contact) {
+		this.contact = contact;
 	}
 
 	

@@ -1,0 +1,29 @@
+[
+	{
+		"id": 99999,		
+		"locationId": 101,
+		"billingAccountId": 12345,
+		"usageTypeDescription": "dummy-usage1",
+		"startDate": "2015-04-21T18:25:43-05:00",
+		"endDate": "2015-12-21T18:25:43-05:00",		
+		"usageCollectionFrequency": "DAILY"
+	},
+	{
+		"id": 88888,		
+		"locationId": 102,
+		"billingAccountId": 12345,
+		"usageTypeDescription": "dummy-usage2",
+		"startDate": "2015-04-21T18:25:43-05:00",
+		"endDate": "2015-12-21T18:25:43-05:00",		
+		"usageCollectionFrequency": "WEEKLY"
+	},
+	{
+		"id": 77777,		
+		"locationId": 103,
+		"billingAccountId": 12345,
+		"usageTypeDescription": "dummy-usage3",
+		"startDate": "2015-04-21T18:25:43-05:00",
+		"endDate": "2015-12-21T18:25:43-05:00",		
+		"usageCollectionFrequency": "MONTHLY"
+	}
+]

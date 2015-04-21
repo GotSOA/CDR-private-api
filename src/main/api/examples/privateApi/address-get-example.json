@@ -1,0 +1,15 @@
+{
+	"id": 123,
+	"address1": "123 main street",
+	"address2": "Suite 100",
+	"city": "Sausalito",
+	"county": "Marin",
+	"state": "CA",
+	"zip": "94960",
+	"country": "US",
+	"phone": "415-123-4567",
+	"phone2": "",
+	"fax": "",
+	"email": "some.email@marin.org",
+	"addressTypeDescription": "business"
+}

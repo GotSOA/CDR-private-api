@@ -5,10 +5,11 @@ import java.util.Map;
 
 public class Rosetta {
 	
+	private long id;		// PK  (meaningless)
 	private String key;
 	private String value;
-	private String sgid;
-	private String objectType;   // ENUM: what are the available types?
+	private ObjectTypeEnum objectType;
+	private long sgid;
 	
 	public Map<String, String> translateFromSungardId(String sgid) {
 		
@@ -38,11 +39,27 @@ public class Rosetta {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public String getSgid() {
+	public long getSgid() {
 		return sgid;
 	}
-	public void setSgid(String sgid) {
+	public void setSgid(long sgid) {
 		this.sgid = sgid;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public ObjectTypeEnum getObjectType() {
+		return objectType;
+	}
+
+	public void setObjectType(ObjectTypeEnum objectType) {
+		this.objectType = objectType;
 	}
 	
 }

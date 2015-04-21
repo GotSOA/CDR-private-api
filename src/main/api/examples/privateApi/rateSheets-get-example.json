@@ -1,0 +1,21 @@
+[
+	{
+	"id": 1001,
+	"price": 9.95,
+	"unitOfMeasure": "MegaByte",
+	"currencyISOCode": "USD"
+	},
+	{
+		"id": 1002,
+		"price": 49.95,
+		"unitOfMeasure": "TeraByte",
+		"currencyISOCode": "USD"
+	},
+	{
+		"id": 1003,
+		"price": 9.95,
+		"unitOfMeasure": "Core",
+		"currencyISOCode": "USD"
+	}
+]
+	

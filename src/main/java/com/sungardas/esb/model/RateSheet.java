@@ -2,17 +2,11 @@ package com.sungardas.esb.model;
 
 public class RateSheet {
 
-	private String sgid;
+	private String id;		// PK
 	private long price;
 	private String unitOfMeasure;
-	private String currencyISOCode;
+	private String currencyISOCode;		// CAD, CHF, USD, JPY
 	
-	public String getSgid() {
-		return sgid;
-	}
-	public void setSgid(String sgid) {
-		this.sgid = sgid;
-	}
 	public long getPrice() {
 		return price;
 	}
@@ -30,6 +24,12 @@ public class RateSheet {
 	}
 	public void setCurrencyISOCode(String currencyISOCode) {
 		this.currencyISOCode = currencyISOCode;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
